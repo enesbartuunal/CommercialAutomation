@@ -1,0 +1,116 @@
+﻿@model TicariOtomasyon.Models.Firma
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Firma</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YetkiliStatu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YetkiliStatu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YetkiliAdSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YetkiliAdSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Il)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Il)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ilce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ilce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VergiDairesi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VergiDairesi)
+        </dd>
+
+        @Html.HiddenFor(model => model.ApplicationUserId)
+
+    </dl>
+</div>
+<p>
+    | @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+    
+</p>

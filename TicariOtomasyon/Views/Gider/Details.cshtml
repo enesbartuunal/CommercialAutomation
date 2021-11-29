@@ -1,0 +1,106 @@
+﻿@model TicariOtomasyon.Models.Gider
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Gider</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kasa.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kasa.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Elektrik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Elektrik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Su)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Su)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dogalgaz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dogalgaz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Internet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Internet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notlar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notlar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUserId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

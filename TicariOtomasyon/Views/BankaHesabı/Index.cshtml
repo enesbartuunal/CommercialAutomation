@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TicariOtomasyon.Models.Banka>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<p>
+    @Html.Partial("_ButtonPartial");
+</p>
+<table id="myTable" class="table-bordered" style="width:100%">
+    <thead>
+        <tr style="color:#ffffff !important;">
+            <th>
+                Firma/Müşteri
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IBAN)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (@Html.DisplayFor(modelItem => item.Firma.Ad).ToString() == "" && @Html.DisplayFor(modelItem => item.Musteri.Ad).ToString() != "")
+                    {
+                        @Html.DisplayFor(modelItem => item.Musteri.Ad)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Firma.Ad)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IBAN)
+                </td>
+                <td>
+                    <button onclick="location.href = '@Url.Action("Edit")'">@Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @style = "color:#ffd800;text-decoration:none" })</button> |
+
+                    <button onclick="location.href = '@Url.Action("Details")'">@Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @style = "text-decoration:none" })</button> |
+                    <input type="button" value="Sil" class="delete" id="@item.Id" style="color:red" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/js/DGBanka.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Turkish.json"
+                },
+            });
+        });
+
+    </script>
+}

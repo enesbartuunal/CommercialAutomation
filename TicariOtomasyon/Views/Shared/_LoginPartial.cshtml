@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNet.Identity
+<link href="~/Scripts/css/Account.css" rel="stylesheet" />
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul>
+        <li>
+            @Html.ActionLink( User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Çıkış Yap</a></li>
+    </ul>
+    }
+}
+else
+{
+   
+}

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TicariOtomasyon.Models.Gider>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Kasa.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Elektrik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Su)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dogalgaz)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Internet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Maas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Extra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notlar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Yil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kasa.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Elektrik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Su)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dogalgaz)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Internet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Maas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Extra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notlar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Yil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUserId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

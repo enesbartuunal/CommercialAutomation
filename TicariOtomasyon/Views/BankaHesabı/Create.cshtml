@@ -1,0 +1,174 @@
+﻿@model TicariOtomasyon.Models.Banka
+<head>
+    <script src="~/Scripts/js/BankaCreate.js"></script>
+
+</head>
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<h2>Yeni Iban Oluştur </h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div style="color:red"> @ViewBag.Message</div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IBAN, htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-10">
+
+            @Html.EditorFor(model => model.IBAN, new { htmlAttributes = new { @class = "form-control", placeholder = "Lütfen IBAN'a Tr Yazmayınız!", type = "number", minlength = "16", maxlength = "16" } })
+
+            @Html.ValidationMessageFor(model => model.IBAN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="left:10px">
+                <input type="button" value="Müşteri veya Firma Seç" class="btn btn-success  btnShowModal" />
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <label id="sonuctext" class="col-md-offset-2 " style="color:white;margin-bottom:20px"></label>
+
+
+        <label id="sonuctext2" class="col-md-offset-2 " style="visibility:hidden"></label>
+    </div>
+    <div>
+        <label id="sonuctext3" class="col-md-offset-2 " style="color:white;margin-bottom:20px"></label>
+
+
+        <label id="sonuctext4" class="col-md-offset-2 " style="visibility:hidden"></label>
+    </div>
+
+        <input type="hidden" name="MName" id="MPostName" />
+        <input type="hidden" name="MId" id="MPostId" />
+        <input type="hidden" name="FName" id="FPostName" />
+        <input type="hidden" name="FId" id="FPostId" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Oluştur" class="btn btn-default" onclick="OnSubmit()" />
+            </div>
+        </div>
+        <script type="text/javascript">
+            function OnSubmit() {
+                document.getElementById("MPostName").value = document.getElementById("sonuctext").innerHTML;
+                document.getElementById("MPostId").value = document.getElementById("sonuctext2").innerHTML;
+                document.getElementById("FPostName").value = document.getElementById("sonuctext3").innerHTML;
+                document.getElementById("FPostId").value = document.getElementById("sonuctext4").innerHTML;
+            }
+        </script>
+
+    </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="setUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Müşteri Ekle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <select id="listM" size="5">
+                        @foreach (var item in ViewBag.mList as SelectList)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+
+                        }
+
+                    </select>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btnSetM" ">Seç</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal1 -->
+    <div class="modal fade" id="setUser1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Lütfen liste seçiniz</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="button" value="Müsteri Listesi" class="btn btn-default btnMList" />
+                    <input type="button" value="Firma Listesi" class="btn btn-default btnFList" />
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal2 -->
+    <div class="modal fade" id="setUser2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Firma Ekle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <select id="listF" size="10">
+                        @foreach (var item in ViewBag.fList as SelectList)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+
+
+
+                        }
+
+                    </select>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btnSetF">Seç</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                </div>
+            </div>
+        </div>
+    </div>

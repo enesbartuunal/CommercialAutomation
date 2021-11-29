@@ -1,0 +1,117 @@
+﻿@model IEnumerable<TicariOtomasyon.Models.Fatura>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+<p>
+    @Html.Partial("_ButtonPartial");
+</p>
+<table id="myTable" class="table-bordered " style="width:100%">
+    <thead>
+        <tr style="color:#ffffff !important">
+
+            <th>
+                @Html.DisplayNameFor(model => model.Seri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SıraNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TarihSaat)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.VergiDairesi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alici)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeslimAlan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeslimEden)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fiyat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miktar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MiktarCins)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tutar)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seri)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SıraNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TarihSaat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VergiDairesi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Alici)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeslimAlan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeslimEden)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fiyat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Miktar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiktarCins)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tutar)
+                </td>
+                <td>
+                    <button onclick="location.href = '@Url.Action("Edit")'">@Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @style = "color:#ffd800;text-decoration:none" })</button> |
+
+                    <button onclick="location.href = '@Url.Action("Details")'">@Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @style = "text-decoration:none" })</button> |
+                    <input type="button" value="Sil" class="delete" id="@item.Id" style="color:red" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/js/DGFatura.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Turkish.json"
+                },
+            });
+        });
+
+    </script>
+}

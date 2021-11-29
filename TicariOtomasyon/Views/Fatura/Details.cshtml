@@ -1,0 +1,123 @@
+﻿@model TicariOtomasyon.Models.Fatura
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Fatura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kasa.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kasa.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SıraNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SıraNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TarihSaat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TarihSaat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VergiDairesi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VergiDairesi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alici)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alici)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeslimAlan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeslimAlan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeslimEden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeslimEden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miktar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miktar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MiktarCins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiktarCins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutar)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

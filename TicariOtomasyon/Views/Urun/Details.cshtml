@@ -1,0 +1,78 @@
+﻿@model TicariOtomasyon.Models.Urun
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Urun</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StoklamaCinsi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoklamaCinsi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrunAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlisFiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlisFiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SatisFiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SatisFiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detay)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<p>
+   | @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+   
+</p>

@@ -1,0 +1,366 @@
+﻿@model TicariOtomasyon.Models.Fatura
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yeni Fatura Oluştur</h2>
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/ui-darkness/jquery-ui.css" rel="stylesheet" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Seri, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Seri, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Seri, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.SıraNo, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.SıraNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SıraNo, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.TarihSaat, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                <input type="datetime-local" name="TarihSaat" class="form-control" />
+
+                @Html.ValidationMessageFor(model => model.TarihSaat, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <hr />
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.TeslimAlan, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.TeslimAlan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TeslimAlan, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.TeslimEden, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.TeslimEden, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TeslimEden, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+
+
+        <div class="form-group">
+
+
+            @Html.LabelFor(model => model.Alici, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                <input type="hidden" id="Alici" name="Alici" />
+                <input type="hidden" id="AliciId" name="AliciId" />
+                <label id="textAlici" style="color:white;margin-bottom:20px"></label>
+                <label id="textAliciId" style="visibility:hidden"></label>
+                <input type="button" value="Seç" class="btn btn-success" onclick="ModalOpen2()" />
+                @Html.ValidationMessageFor(model => model.Alici, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.VergiDairesi, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                <input type="hidden" id="VergiDairesi" name="VergiDairesi" />
+                <label id="textVd" style="color:white;margin-bottom:20px"></label>
+
+                @Html.ValidationMessageFor(model => model.VergiDairesi, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <hr />
+
+        <input type="button" class="btn btn-default" value="Faturaya Kalem Girişi Yapmak İçin Tıklayınız"
+               onclick="UrunModalOpen()" />
+
+
+        <hr />
+        <label id="lasturunlıst" style="color:white">
+
+        </label>
+
+        <hr />
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tutar, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @*@Html.EditorFor(model => model.Tutar, new { htmlAttributes = new { @class = "form-control", @id = "Tutar" } })*@
+                <input type="text" readonly="readonly" name="Tutar" id="tutar" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Tutar, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Fiyat, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Fiyat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fiyat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Miktar, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Miktar, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Miktar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MiktarCins, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MiktarCins, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MiktarCins, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Oluştur" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script type="text/javascript">
+    function OnSubmit() {
+        var selecteditem = document.getElementById("list2");
+        var listlength = selecteditem.options.length;
+        for (var i = 0; i < listlength; i++) {
+            if (selecteditem.options[i].selected) {
+                $("#textAlici").html(selecteditem.options[i].text);
+                $("#textAliciId").html(selecteditem.options[i].value);
+                $('#setUser2').modal('hide');
+
+            }
+        }
+        document.getElementById("Alici").value = document.getElementById("textAlici").innerHTML;
+        document.getElementById("AliciId").value = document.getElementById("textAliciId").innerHTML;
+        let id = document.getElementById("AliciId").value;
+        let ad = document.getElementById("Alici").value;
+        $.ajax({
+            type: "Get",
+            dataType: "Json",
+            url: "/Fatura/GetVD",
+            data: { id: id, ad: ad },
+            success: function (response) {
+                let vergidairesi = JSON.parse(response);
+                $("#textVd").html(vergidairesi.VergiDairesi);
+
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    function ModalOpen2() {
+        $('#setUser2').modal('show');
+
+    }
+</script>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="setUser2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lütfen Vergi Dairesini Seçiniz!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <select id="list2" size="10">
+                    @foreach (var item in ViewBag.MFlist)
+                    {
+                        <option value="@item.Value">
+                            @item.Text
+                        </option>
+
+
+
+                    }
+
+                </select>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="OnSubmit()">Seç</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function UrunModalOpen() {
+        $('#setUser3').modal('show');
+
+    }
+</script>
+
+
+
+<script type="text/javascript">
+    function CopyInfo() {
+        var selecteditem = document.getElementById("list3");
+
+        var listlength = selecteditem.options.length;
+        for (var i = 0; i < listlength; i++) {
+            if (selecteditem.options[i].selected) {
+
+                var qw = selecteditem.options[i].text.split("|");
+                var urunad = qw[1];
+                var urunFiyat = qw[2];
+                var urunBirim = qw[3];
+                var urunKod = qw[0];
+                $("#urunkod").val(urunKod);
+                $("#urunAd").html(urunad);
+                $("#urunFiyat").html(urunFiyat);
+                $("#birim").html(urunBirim);
+                $("#miktars").val("");
+                $("#totall").html("");
+                $('#setUser3').modal('hide');
+                $('#setUser4').modal('show');
+            }
+        }
+    }
+
+</script>
+
+
+
+<!-- Modal UrunList -->
+<div class="modal fade" id="setUser3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lütfen Ürün Seçiminizi Yapınız!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <select id="list3" size="10">
+                    <option disabled="disabled" style="background-color:aquamarine">
+                        <columb style="width: 100px">Urun Kodu</columb>|
+                        <columb style="width: 100px">Urun</columb>|
+                        <columb style="width: 100px">Fiyat</columb>|
+                        <columb style="width: 100px">Birimi</columb>|
+                        <columb style="width: 100px">Detayı</columb>
+                    </option>
+                    @foreach (var item in ViewBag.UrunList)
+                    {
+                        <option>
+                            <columb style="width:20%">
+                                @item.Id
+                            </columb>|
+                            <columb style=" width: 10px">
+                                @item.UrunAd
+                            </columb>|
+                            <columb style="width: 20%">
+                                @item.SatisFiyat
+                            </columb>|
+                            <columb>
+                                @item.StoklamaCinsi
+                            </columb>|
+                            <columb style="width: 20%">
+                                @item.Detay
+                            </columb>
+                        </option>
+                    }
+
+                </select>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="CopyInfo()">Seç</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal UrunList Miktar sec -->
+<div class="modal fade" id="setUser4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lütfen <label id="urunAd"></label> İçin Satış Miktarı Yazınız!<br />Birim Satış Fiyatı:<label id="urunFiyat"></label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <label id="textkalem" style="color:black">Satış Miktarı: <input type='number' name='Miktar' id='miktars' style='color:black;width:90px' onchange="SumTotal()" /></label>
+                <label id="birim" style="color:black"></label>
+                <hr />
+                <label>Toplam:</label>
+                <label id="totall" style="color:black"></label>
+                <label> Türk Lirası</label>
+                <input id="urunkod" type="hidden" />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="GetUrun()">Seç</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function SumTotal() {
+        if (document.getElementById("miktars").value != null) {
+            var brmfiyat = document.getElementById("urunFiyat").innerHTML;
+            var birimfiyat = parseFloat(brmfiyat.replace(",", "."));
+            var satısMik = parseFloat(document.getElementById("miktars").value);
+            var total = birimfiyat * satısMik;
+
+            $("#totall").html(total);
+        }
+    }
+
+</script>
+
+<script type="text/javascript">
+    function GetUrun() {
+        var urunkod = document.getElementById("urunkod").value;
+        var urunad = document.getElementById("urunAd").innerHTML;
+        var tutar = document.getElementById("totall").innerHTML;
+        var floattutar = parseFloat(tutar.replace(",", "."));
+        var oldtutar = document.getElementById("tutar").value;
+
+
+        if (oldtutar == undefined) {
+            $("#tutar").val(floattutar);
+        }
+        else {
+
+            var lasttutar = floattutar + oldtutar;
+            $("#tutar").val(lasttutar);
+        }
+        $("#lasturunlıst").html(document.getElementById("lasturunlıst").innerHTML + "<br/>" + urunkod + "|" + urunad + "|" + tutar);
+        $('#setUser4').modal('hide');
+    }
+</script>

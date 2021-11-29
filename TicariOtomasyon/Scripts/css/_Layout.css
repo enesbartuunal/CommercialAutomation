@@ -1,0 +1,137 @@
+﻿*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+:after {
+    content: "";
+}
+
+section {
+    position: relative;
+    left: 100px;
+}
+
+h1 {
+    margin: 80px 0 10px 0;
+    font-size: 52px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0px #DC143C, 2px 2px 0px #DC143C, 3px 3px 0px #DC143C, 4px 4px 0px #DC143C;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+
+
+nav {
+    float: left;
+    position: relative;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75) !important;
+}
+
+    nav ul {
+        text-align: center;
+    }
+
+        nav ul li {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.75) ;
+           
+            text-transform: uppercase;
+            transition: all .4s ease-out;
+        }
+
+            nav ul li:after {
+                position: absolute;
+                background: rgba(0, 0, 0, 0.75);
+                color: white;
+                top: 0;
+                left: 70px;
+                width: 70px;
+                height: 100%;
+                opacity: .5;
+                transform: perspective(400px) rotateY(90deg);
+                transform-origin: 0 100%;
+                transition: all .4s ease-out;
+               
+            }
+
+            nav ul li:nth-child(1):after {
+                content: "Anasayfa";
+                line-height: 70px;
+                font-size: 12px !important;
+            }
+
+            nav ul li:nth-child(2):after {
+                content: "Ürün";
+                line-height: 70px;
+            }
+
+            nav ul li:nth-child(3):after {
+                content: "Stok";
+                line-height: 70px;
+            }
+
+            nav ul li:nth-child(4):after {
+                content: "Müşteri";
+                line-height: 70px;
+            }
+
+            nav ul li:nth-child(5):after {
+                content: "Firma";
+                line-height: 70px;
+            }
+
+            nav ul li:nth-child(6):after {
+                content: "Personel";
+                line-height: 70px;
+                font-size: 12px !important;
+            }
+
+            nav ul li:nth-child(7):after {
+                content: "Gider";
+                line-height: 70px;
+            }
+
+            nav ul li:nth-child(8):after {
+                content: "Kasa";
+                line-height: 70px;
+            }
+
+            nav ul li:nth-child(9):after {
+                content: "Banka";
+                line-height: 70px;
+            }
+
+            nav ul li:nth-child(10):after {
+                content: "Fatura";
+                line-height: 70px;
+            }
+
+            nav ul li:hover {
+                transform: translateX(-50px);
+            }
+
+                nav ul li:hover:after {
+                    opacity: 1;
+                    transform: perspective(400px) rotateY(0deg) scale(1);
+                }
+
+
+            nav ul li > div {
+                display: inline-block;
+                padding: 25px 0;
+                background: rgba(0, 0, 0, 0.75);
+              
+            }
+
+            nav ul li div {
+                position: relative;
+            }

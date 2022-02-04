@@ -51,7 +51,7 @@ namespace TicariOtomasyon.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Ad,YetkiliStatu,YetkiliAdSoyad,Tel,Tel2,Tel3,Email,Fax,Il,Ilce,Adres")] Firma firma,FormCollection form)
+        public ActionResult Create([Bind(Include = "Id,Ad,YetkiliStatu,YetkiliAdSoyad,Tel,Tel2,Tel3,Email,Fax,Il,Ilce,Adres")] Firma firma, FormCollection form)
         {
             if (ModelState.IsValid)
             {

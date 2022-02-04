@@ -10,6 +10,10 @@ namespace TicariOtomasyon.Models
     {
         public int Id { get; set; }
 
+        public DateTime Tarih { get; set; }
+
+        public decimal Tutar { get; set; }
+
         public List<Gider> Giders { get; set; }
 
         public List<Fatura> FaturaBasliks { get; set; }

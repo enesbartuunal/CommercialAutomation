@@ -9,6 +9,7 @@
 
 <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/ui-darkness/jquery-ui.css" rel="stylesheet" />
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -88,7 +89,7 @@
 
         <hr />
 
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.Tutar, htmlAttributes: new { @class = "control-label col-md-1" })
             <div class="col-md-3">
@@ -96,35 +97,15 @@
                 <input type="text" readonly="readonly" name="Tutar" id="tutar" class="form-control" />
                 @Html.ValidationMessageFor(model => model.Tutar, "", new { @class = "text-danger" })
             </div>
-            @Html.LabelFor(model => model.Fiyat, htmlAttributes: new { @class = "control-label col-md-1" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.Fiyat, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fiyat, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Miktar, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Miktar, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
-                @Html.ValidationMessageFor(model => model.Miktar, "", new { @class = "text-danger" })
-            </div>
         </div>
 
 
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MiktarCins, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MiktarCins, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MiktarCins, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Oluştur" class="btn btn-default" />
+                <input type="submit" value="Oluştur" class="btn btn-default " onclick="EditMiktar()" />
             </div>
         </div>
     </div>
@@ -136,6 +117,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }
 
 
@@ -202,7 +184,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="OnSubmit()">Seç</button>
+                <button type="button" class="btn btn-primary " onclick="OnSubmit()">Seç</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
             </div>
         </div>
@@ -347,10 +329,14 @@
     function GetUrun() {
         var urunkod = document.getElementById("urunkod").value;
         var urunad = document.getElementById("urunAd").innerHTML;
+        var urunmiktar = document.getElementById("miktars").value;
         var tutar = document.getElementById("totall").innerHTML;
         var floattutar = parseFloat(tutar.replace(",", "."));
-        var oldtutar = document.getElementById("tutar").value;
-
+        var otutar = document.getElementById("tutar").value;
+        if (otutar != "") {
+            var oldtutar = parseFloat(otutar.replace(",", "."));
+            console.log(oldtutar);
+        }
 
         if (oldtutar == undefined) {
             $("#tutar").val(floattutar);
@@ -360,7 +346,34 @@
             var lasttutar = floattutar + oldtutar;
             $("#tutar").val(lasttutar);
         }
-        $("#lasturunlıst").html(document.getElementById("lasturunlıst").innerHTML + "<br/>" + urunkod + "|" + urunad + "|" + tutar);
+        $("#lasturunlıst").html(document.getElementById("lasturunlıst").innerHTML + "<br/>" + urunkod + "|" + urunad + "|" + urunmiktar + "|" + tutar);
         $('#setUser4').modal('hide');
     }
+</script>
+
+<script type="text/javascript">
+    function EditMiktar() {
+        
+            var miktar = document.getElementById("miktars").value;
+            var urunId = document.getElementById("urunkod").value;
+       
+        console.log(miktar);
+        console.log(urunId);
+        $.ajax({
+            type: "Post",
+            dataType: "Json",
+            url: "/Fatura/EditStokMiktar",
+            data: { miktar: miktar, id: urunId },
+            success: function (response) {
+                Swal.fire({
+                    title: "Stok Güncellendi!",
+                    confirmButtonText: "Tamam"
+                }).then(function (result) {
+                    if (result.isConfirmed)
+                        location.reload();
+                });
+            }
+        });
+    }
+
 </script>

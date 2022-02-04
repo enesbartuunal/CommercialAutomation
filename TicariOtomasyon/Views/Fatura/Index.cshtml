@@ -35,15 +35,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.TeslimEden)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fiyat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Miktar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MiktarCins)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Tutar)
             </th>
@@ -76,21 +68,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.TeslimEden)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fiyat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Miktar)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MiktarCins)
-                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Tutar)
                 </td>
                 <td>
-                    <button onclick="location.href = '@Url.Action("Edit")'">@Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @style = "color:#ffd800;text-decoration:none" })</button> |
-
                     <button onclick="location.href = '@Url.Action("Details")'">@Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @style = "text-decoration:none" })</button> |
                     <input type="button" value="Sil" class="delete" id="@item.Id" style="color:red" />
                 </td>
@@ -98,6 +80,10 @@
         }
     </tbody>
 </table>
+<div style="color:white">
+    <h3>Yasal Sorumluluklardan dolayı faturalar oluşturulduktan sonra düzenleme yapılamaz.<br />Yanlış oluşturulan faturalar için aynı tutarda eksi bakiyeli düzeltme faturası oluşturulmalıdır.</h3>
+
+</div>
 @section Scripts{
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

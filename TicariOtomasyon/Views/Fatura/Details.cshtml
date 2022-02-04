@@ -5,27 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Fatura</h2>
 
-<div>
-    <h4>Fatura</h4>
+<div style="color:white">
+    
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationUser.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Kasa.Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Kasa.Id)
-        </dd>
+      
 
         <dt>
             @Html.DisplayNameFor(model => model.Seri)
@@ -84,30 +70,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Fiyat)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fiyat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Miktar)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Miktar)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MiktarCins)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MiktarCins)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Tutar)
         </dt>
 
@@ -117,7 +79,4 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

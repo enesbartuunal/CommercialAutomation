@@ -197,6 +197,22 @@
     <Compile Include="Migrations\202111260716118_v2.Designer.cs">
       <DependentUpon>202111260716118_v2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112251321436_v3.cs" />
+    <Compile Include="Migrations\202112251321436_v3.Designer.cs">
+      <DependentUpon>202112251321436_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112270916182_v4.cs" />
+    <Compile Include="Migrations\202112270916182_v4.Designer.cs">
+      <DependentUpon>202112270916182_v4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112271956340_v5.cs" />
+    <Compile Include="Migrations\202112271956340_v5.Designer.cs">
+      <DependentUpon>202112271956340_v5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112272022127_v6.cs" />
+    <Compile Include="Migrations\202112272022127_v6.Designer.cs">
+      <DependentUpon>202112272022127_v6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Banka.cs" />
@@ -253,10 +269,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\BankaCreate.js" />
-    <Content Include="Scripts\js\Datatable.js" />
     <Content Include="Scripts\js\DeleteConfirmPersonel.js" />
     <Content Include="Scripts\js\DGBanka.js" />
+    <Content Include="Scripts\js\DGFatura.css" />
+    <Content Include="Scripts\js\DGFatura.js" />
     <Content Include="Scripts\js\DGFirma.js" />
+    <Content Include="Scripts\js\DGGider.js" />
     <Content Include="Scripts\js\DGMusteri.js" />
     <Content Include="Scripts\js\DGStok.js" />
     <Content Include="Scripts\js\DGUrun.js" />
@@ -306,14 +324,9 @@
     <Content Include="Views\Firma\Edit.cshtml" />
     <Content Include="Views\Firma\Index.cshtml" />
     <Content Include="Views\Gider\Create.cshtml" />
-    <Content Include="Views\Gider\Delete.cshtml" />
     <Content Include="Views\Gider\Details.cshtml" />
     <Content Include="Views\Gider\Edit.cshtml" />
     <Content Include="Views\Gider\Index.cshtml" />
-    <Content Include="Views\Kasa\Create.cshtml" />
-    <Content Include="Views\Kasa\Delete.cshtml" />
-    <Content Include="Views\Kasa\Details.cshtml" />
-    <Content Include="Views\Kasa\Edit.cshtml" />
     <Content Include="Views\Kasa\Index.cshtml" />
     <Content Include="Views\Musteri\Create.cshtml" />
     <Content Include="Views\Musteri\Details.cshtml" />
@@ -333,7 +346,9 @@
     <Content Include="Views\Urun\Index.cshtml" />
     <Content Include="Views\Sweet\Alert.cshtml" />
     <Content Include="Views\Shared\_ButtonPartial.cshtml" />
-    <Content Include="Views\Fatura\Index.cshtml" />
+    <Content Include="Views\Fatura\Index.cshtml">
+      <BrowseToURL>4</BrowseToURL>
+    </Content>
     <Content Include="Views\Fatura\Details.cshtml" />
     <Content Include="Views\Fatura\Create.cshtml" />
     <Content Include="Views\Fatura\Edit.cshtml" />
@@ -361,6 +376,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111260716118_v2.resx">
       <DependentUpon>202111260716118_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112251321436_v3.resx">
+      <DependentUpon>202112251321436_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112270916182_v4.resx">
+      <DependentUpon>202112270916182_v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112271956340_v5.resx">
+      <DependentUpon>202112271956340_v5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112272022127_v6.resx">
+      <DependentUpon>202112272022127_v6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

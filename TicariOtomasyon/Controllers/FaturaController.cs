@@ -64,7 +64,7 @@ namespace TicariOtomasyon.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Seri,SıraNo,Tarih,Saat,VergiDairesi,TeslimAlan,TeslimEden,Fiyat,Miktar,MiktarCins,Tutar")] Fatura fatura, FormCollection form)
+        public ActionResult Create([Bind(Include = "Id,Seri,SıraNo,Tarih,Saat,VergiDairesi,TeslimAlan,TeslimEden,Tutar")] Fatura fatura, FormCollection form)
         {
             if (ModelState.IsValid)
             {
@@ -72,8 +72,26 @@ namespace TicariOtomasyon.Controllers
                 user = db.Users.Where(q => q.UserName == User.Identity.Name).FirstOrDefault();
                 fatura.ApplicationUserId = user.Id;
                 fatura.KasaId = user.KasaId;
+                var ts= form["TarihSaat"];
+                var tsn = Convert.ToDateTime(ts);
+                fatura.TarihSaat = tsn;
                 fatura.Alici = form["Alici"];
+                var alıcııd = form["AliciId"];
+                var ıd = Convert.ToInt32(alıcııd);
+                if (db.Musteris.Where(q=>q.Id==ıd&&q.Ad==fatura.Alici).FirstOrDefault()==null)
+                {
+                   var firma = db.Firmas.Where(x => x.Id == ıd && x.Ad == fatura.Alici);
+                    var vergidairesi = firma.Select(x => x.VergiDairesi).FirstOrDefault();
+                    fatura.VergiDairesi = vergidairesi;
+                }
+                else
+                {
+                    var musteri = db.Musteris.Where(q => q.Id == ıd && q.Ad == fatura.Alici);
+                    var vergidairesi = musteri.Select(x => x.VergiDairesi).FirstOrDefault();
+                    fatura.VergiDairesi = vergidairesi;
+                }
 
+        
                 db.Faturas.Add(fatura);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -103,7 +121,7 @@ namespace TicariOtomasyon.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Seri,SıraNo,Tarih,Saat,VergiDairesi,Alici,TeslimAlan,TeslimEden,Fiyat,Miktar,MiktarCins,Tutar,KasaId,ApplicationUserId")] Fatura fatura)
+        public ActionResult Edit([Bind(Include = "Id,Seri,SıraNo,Tarih,Saat,VergiDairesi,Alici,TeslimAlan,TeslimEden,Tutar,KasaId,ApplicationUserId")] Fatura fatura)
         {
             if (ModelState.IsValid)
             {
@@ -130,6 +148,28 @@ namespace TicariOtomasyon.Controllers
                 throw ex;
             }
             return Json(id);
+        }
+
+        [HttpPost]
+        public JsonResult EditStokMiktar(decimal miktar,int? id)
+        {
+            try
+            {
+                if (id != null)
+                {
+                    var stok = db.Stoks.Find(id);
+                    stok.Miktar -= miktar;
+                    db.Entry(stok).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+              
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return Json(null);
         }
 
         [HttpGet]

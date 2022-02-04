@@ -24,12 +24,6 @@ namespace TicariOtomasyon.Models
 
         public string TeslimEden { get; set; }
 
-        public decimal Fiyat { get; set; }
-
-        public decimal Miktar { get; set; }
-
-        public string MiktarCins { get; set; }
-
         public decimal Tutar { get; set; }
 
         public int KasaId { get; set; }

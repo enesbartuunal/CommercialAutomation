@@ -18,8 +18,7 @@ namespace TicariOtomasyon.Controllers
         // GET: Gider
         public ActionResult Index()
         {
-            var giders = db.Giders.Include(g => g.Kasa);
-            return View(giders.ToList());
+            return View((db.Giders.Where(q => q.ApplicationUser.UserName == User.Identity.Name).ToList()));
         }
 
         // GET: Gider/Details/5
@@ -40,7 +39,6 @@ namespace TicariOtomasyon.Controllers
         // GET: Gider/Create
         public ActionResult Create()
         {
-            ViewBag.KasaId = new SelectList(db.Kasas, "Id", "Id");
             return View();
         }
 
@@ -49,10 +47,17 @@ namespace TicariOtomasyon.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Elektrik,Su,Dogalgaz,Internet,Maas,Extra,Notlar,Ay,Yil,KasaId,ApplicationUserId")] Gider gider)
+        public ActionResult Create([Bind(Include = "Id,Notlar,Tutar")] Gider gider,FormCollection form)
         {
             if (ModelState.IsValid)
             {
+                var user = new ApplicationUser();
+                user = db.Users.Where(q => q.UserName == User.Identity.Name).FirstOrDefault();
+                gider.ApplicationUserId = user.Id;
+                gider.KasaId = user.KasaId;
+                var date = form["Tarih"];
+                var date2 = Convert.ToDateTime(date);
+                gider.Tarih = date2;
                 db.Giders.Add(gider);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -74,7 +79,7 @@ namespace TicariOtomasyon.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.KasaId = new SelectList(db.Kasas, "Id", "Id", gider.KasaId);
+           
             return View(gider);
         }
 
@@ -83,42 +88,36 @@ namespace TicariOtomasyon.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Elektrik,Su,Dogalgaz,Internet,Maas,Extra,Notlar,Ay,Yil,KasaId,ApplicationUserId")] Gider gider)
+        public ActionResult Edit([Bind(Include = "Id,Notlar,Tarih,Tutar,KasaId,ApplicationUserId")] Gider gider)
         {
             if (ModelState.IsValid)
             {
+                var date = gider.Tarih;
+                var date2 = Convert.ToDateTime(date);
+                gider.Tarih = date2;
                 db.Entry(gider).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.KasaId = new SelectList(db.Kasas, "Id", "Id", gider.KasaId);
+           
             return View(gider);
         }
 
         // GET: Gider/Delete/5
-        public ActionResult Delete(int? id)
+        [HttpPost]
+        public JsonResult Delete(int id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                db.Giders.Remove(db.Giders.FirstOrDefault(q => q.Id == id));
+                db.SaveChanges();
             }
-            Gider gider = db.Giders.Find(id);
-            if (gider == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
-            }
-            return View(gider);
-        }
 
-        // POST: Gider/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Gider gider = db.Giders.Find(id);
-            db.Giders.Remove(gider);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                throw ex;
+            }
+            return Json(id);
         }
 
         protected override void Dispose(bool disposing)

@@ -10,23 +10,11 @@ namespace TicariOtomasyon.Models
     {
         public int Id { get; set; }
 
-        public decimal Elektrik{ get; set; }
-
-        public decimal Su { get; set; }
-
-        public decimal Dogalgaz { get; set; }
-
-        public decimal Internet { get; set; }
-
-        public decimal Maas { get; set; }
-
-        public decimal Extra { get; set; }
+        public DateTime Tarih { get; set; }
 
         public string Notlar { get; set; }
 
-        public string Ay { get; set; }
-
-        public int Yil { get; set; }
+        public decimal Tutar { get; set; }
 
         public int KasaId { get; set; }
 

@@ -4,90 +4,66 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.Partial("_ButtonPartial");
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Kasa.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Elektrik)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Su)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dogalgaz)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Internet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Maas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Extra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notlar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Yil)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUserId)
-        </th>
-        <th></th>
-    </tr>
+<table id="myTable" class="table-bordered " style="width:100%">
+    <thead>
+        <tr style="color:#ffffff !important">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kasa.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Elektrik)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Su)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dogalgaz)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Internet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Maas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Extra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notlar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Yil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUserId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <th>
+                @Html.DisplayNameFor(model => model.Notlar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarih)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tutar)
+            </th>
 
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notlar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tarih)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tutar)
+                </td>
+                <td>
+                    <button onclick="location.href = '@Url.Action("Edit")'">@Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @style = "color:#ffd800;text-decoration:none" })</button> |
+
+                    <button onclick="location.href = '@Url.Action("Details")'">@Html.ActionLink("Detay", "Details", new { id = item.Id }, new { @style = "text-decoration:none" })</button> |
+                    <input type="button" value="Sil" class="delete" id="@item.Id" style="color:red" />
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section Scripts{
+    <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <script src="~/Scripts/js/DGGider.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Turkish.json"
+                },
+            });
+        });
+
+    </script>
+}

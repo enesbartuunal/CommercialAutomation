@@ -1,27 +1,73 @@
-﻿@model IEnumerable<TicariOtomasyon.Models.Kasa>
+﻿@model TicariOtomasyon.Models.Kasa
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.Partial("_ButtonPartial");
-</p>
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div style="color:white" class="col-md-12">
+    <center>
+        <h2>
+            @Html.DisplayFor(model => model.Tarih.Day).
+            @Html.DisplayFor(model => model.Tarih.Month).
+            @Html.DisplayFor(model => model.Tarih.Year)
+        </h2>
+    </center>
+</div>
+<div  class="col-md-12">
+    <h3 class="col-md-6" style="left:240px;color:aqua" >
+        GELİR
+    </h3>
+    <h3 class="col-md-6" style=" left: 260px;color:aqua">
+        GİDER
+    </h3>
+</div>
+<div  class="col-md-12">
+    <table class=" col-md-6 table-condensed table-bordered">
 
-</table>
+        <tr style="color:red">
+            <th>Seri No</th>
+            <th>Tutar</th>
+        </tr>
+
+        @foreach (var item in ViewBag.fatura)
+        {
+            <tr style="color:white">
+                <td>@item.Seri</td>
+                <td>@item.Tutar</td>
+
+            </tr>
+        }
+
+    </table>
+    <table class=" col-md-6 table-condensed table-bordered">
+        <tr style="color:red">
+            <th>Notlar</th>
+            <th>Tutar</th>
+
+        </tr>
+
+        @foreach (var gider in ViewBag.gider)
+        {
+            <tr style="color:white">
+                <td>@gider.Notlar</td>
+                <td>@gider.Tutar</td>
+
+            </tr>
+        }
+
+    </table>
+    
+</div>
+<br />
+<div style="color:aqua" class="col-md-offset-5
+     col-md-12">
+    <table class="table-condensed table-bordered" >
+        <tr>
+            <th>KAZANÇ</th>
+            <th>@ViewBag.kasa</th>
+        </tr>
+    </table>
+    <br />
+</div>

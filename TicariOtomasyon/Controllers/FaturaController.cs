@@ -157,7 +157,8 @@ namespace TicariOtomasyon.Controllers
             {
                 if (id != null)
                 {
-                    var stok = db.Stoks.Find(id);
+
+                    var stok = db.Stoks.FirstOrDefault(q=>q.UrunId==id);
                     stok.Miktar -= miktar;
                     db.Entry(stok).State = EntityState.Modified;
                     db.SaveChanges();

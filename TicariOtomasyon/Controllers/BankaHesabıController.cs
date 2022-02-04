@@ -115,7 +115,7 @@ namespace TicariOtomasyon.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IBAN,FirmaId,MusteriId")] Banka banka)
+        public ActionResult Edit([Bind(Include = "Id,IBAN,FirmaId,MusteriId,ApplicationUserId")] Banka banka)
         {
             if (ModelState.IsValid)
             {
